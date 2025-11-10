@@ -112,10 +112,11 @@ export default function LiSKeuzetool() {
   const handledModulesYes = useMemo(() => filteredModules.filter((m) => competences[m.key] === true), [filteredModules, competences]);
   const handledModulesNo = useMemo(() => filteredModules.filter((m) => competences[m.key] === false), [filteredModules, competences]);
 
-  const canGoStep1 = useMemo(
-    () => name.trim() && /.+@.+\\..+/.test(email) && role.trim() && Array.isArray(interests) && interests.length > 0 && interests.length <= 2,
-    [name, email, role, interests]
+const canGoStep1 = useMemo(
+    () => name.trim() && /.+@.+\..+/.test(email),
+    [name, email]
   );
+
   const canGoStep2 = useMemo(() => filteredModules.length > 0, [filteredModules]);
   const canShowAdvice = useMemo(() => wantsContact !== null, [wantsContact]);
 
@@ -250,7 +251,7 @@ export default function LiSKeuzetool() {
               </div>
               <div className="flex flex-col">
                 <label className="text-sm font-medium text-black">Wat is je huidige functie?</label>
-                <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="Bijv. Productie-operator" className="mt-1 border rounded-lg p-2" required />
+                <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="Bijv. Productie-operator" className="mt-1 border rounded-lg p-2" />
               </div>
               <div className="md:col-span-2 flex flex-col">
                 <label className="text-sm font-medium text-black">Achtergrond <span className="text-gray-500 font-normal">(optioneel, max. 250 woorden)</span></label>
